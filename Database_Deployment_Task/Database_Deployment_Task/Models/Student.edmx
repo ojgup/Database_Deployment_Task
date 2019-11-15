@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DADModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="AUTHORID" />
+          </Key>
+          <Property Name="AUTHORID" Type="int" Nullable="false" />
+          <Property Name="AUTHORFIRSTNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="AUTHORLASTNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="AUTHORTAXFILENUMBER" Type="int" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="ISBN" />
+          </Key>
+          <Property Name="ISBN" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="YEARPUBLISHED" Type="int" Nullable="false" />
+          <Property Name="AUTHORID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="ISBN" />
+          </Key>
+          <Property Name="ISBN" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LASTNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="320" Nullable="false" />
+          <Property Name="PHONENUMBER" Type="nvarchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Book__AUTHORID__489D2A59">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="AUTHORID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="AUTHORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DADModelStoreContainer">
+          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Book__AUTHORID__489D2A59" Association="Self.FK__Book__AUTHORID__489D2A59">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DADModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="AUTHORID" />
+          </Key>
+          <Property Name="AUTHORID" Type="Int32" Nullable="false" />
+          <Property Name="AUTHORFIRSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AUTHORLASTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AUTHORTAXFILENUMBER" Type="Int32" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Book__AUTHORID__489D2A59" FromRole="Author" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="ISBN" />
+          </Key>
+          <Property Name="ISBN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TITLE" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="YEARPUBLISHED" Type="Int32" Nullable="false" />
+          <Property Name="AUTHORID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="Self.FK__Book__AUTHORID__489D2A59" FromRole="Book" ToRole="Author" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="ISBN" />
+          </Key>
+          <Property Name="ISBN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="320" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PHONENUMBER" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Book__AUTHORID__489D2A59">
+          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="AUTHORID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="AUTHORID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DADEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="Self.Author" />
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <AssociationSet Name="FK__Book__AUTHORID__489D2A59" Association="Self.FK__Book__AUTHORID__489D2A59">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DADModelStoreContainer" CdmEntityContainer="DADEntities2">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="DADModel.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="AUTHORID" ColumnName="AUTHORID" />
+                <ScalarProperty Name="AUTHORFIRSTNAME" ColumnName="AUTHORFIRSTNAME" />
+                <ScalarProperty Name="AUTHORLASTNAME" ColumnName="AUTHORLASTNAME" />
+                <ScalarProperty Name="AUTHORTAXFILENUMBER" ColumnName="AUTHORTAXFILENUMBER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="DADModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="YEARPUBLISHED" ColumnName="YEARPUBLISHED" />
+                <ScalarProperty Name="AUTHORID" ColumnName="AUTHORID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="DADModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PHONENUMBER" ColumnName="PHONENUMBER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

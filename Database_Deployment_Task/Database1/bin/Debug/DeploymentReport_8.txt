@@ -1,0 +1,22 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [dbo].[Student].[AUTHORID] is being dropped, data loss could occur.
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[Student] (Foreign Key)
+     Alter
+       [dbo].[Student] (Table)
+     Create
+       Foreign Key: unnamed constraint on [dbo].[Book] (Foreign Key)
+
+** Supporting actions
+
+The column [dbo].[Student].[AUTHORID] is being dropped, data loss could occur.
+

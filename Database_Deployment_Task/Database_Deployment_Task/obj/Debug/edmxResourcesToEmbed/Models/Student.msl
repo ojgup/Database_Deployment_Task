@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DADModelStoreContainer" CdmEntityContainer="DADEntities2">
+    <EntitySetMapping Name="Authors">
+      <EntityTypeMapping TypeName="DADModel.Author">
+        <MappingFragment StoreEntitySet="Author">
+          <ScalarProperty Name="AUTHORID" ColumnName="AUTHORID" />
+          <ScalarProperty Name="AUTHORFIRSTNAME" ColumnName="AUTHORFIRSTNAME" />
+          <ScalarProperty Name="AUTHORLASTNAME" ColumnName="AUTHORLASTNAME" />
+          <ScalarProperty Name="AUTHORTAXFILENUMBER" ColumnName="AUTHORTAXFILENUMBER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="DADModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="YEARPUBLISHED" ColumnName="YEARPUBLISHED" />
+          <ScalarProperty Name="AUTHORID" ColumnName="AUTHORID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="DADModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PHONENUMBER" ColumnName="PHONENUMBER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
